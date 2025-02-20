@@ -7,7 +7,6 @@ import { Navbar } from "@/components/navbar";
 import { QueryProvider } from "@/providers/query-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { Footer } from "@/components/footer";
-import { env } from "@/config/env";
 
 const font = Inter({
   subsets: ["latin"],
@@ -23,7 +22,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  metadataBase: new URL(env.appUrl),
 };
 
 export default async function RootLayout({
