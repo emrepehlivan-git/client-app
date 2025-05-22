@@ -7,6 +7,8 @@ import { Navbar } from "@/components/navbar";
 import { QueryProvider } from "@/providers/query-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { Footer } from "@/components/footer";
+import AuthSessionProvider from "@/providers/auth-session-provider";
+import { getAuthSession } from "@/lib/authOptions";
 
 const font = Inter({
   subsets: ["latin"],
@@ -29,15 +31,18 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getAuthSession();
   return (
     <html lang="en">
       <body
         className={`${font.className} antialiased flex flex-col min-h-screen`}
       >
-        <QueryProvider>
-          <Navbar />
-          {children}
-        </QueryProvider>
+        <AuthSessionProvider session={session}>
+          <QueryProvider>
+            <Navbar />
+            {children}
+          </QueryProvider>
+        </AuthSessionProvider>
         <Toaster />
         <Footer />
       </body>

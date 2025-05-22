@@ -1,13 +1,13 @@
 "use client";
 
-import { LogIn } from "lucide-react";
+import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
-import { signIn } from "@/lib/authUtils";
+import { LogIn } from "lucide-react";
 
-export function LoginButton() {
+export default function LoginButton() {
   return (
-    <Button className="font-semibold" onClick={signIn}>
-      <LogIn className="size-1 mr-1" />
+    <Button onClick={() => signIn("openiddict")} className="font-semibold">
+      <LogIn className="size-2 mr-2" />
       Login
     </Button>
   );
